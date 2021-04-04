@@ -1,4 +1,4 @@
-## wikibase docker image
+# wikibase docker image
 
 Wikibase extension running on Mediawiki.
 
@@ -7,7 +7,7 @@ If `LocalSettings.php` is mounted then the image assumes you will do this yourse
 
 Automated build.
 
-### Tags
+## Tags
 
 Image name                                                                               | Parent image
 ------------------------------------------------------------------------------------     | ------------------------
@@ -16,7 +16,7 @@ Image name                                                                      
 `wikibase/wikibase` : `latest-bundle`, `lts-bundle`, `1.35-bundle`                       | [wikibase:1.35](https://hub.docker.com/r/wikibase/wikibase/)
 `wikibase/wikibase` : `1.31-bundle`                                                      | [wikibase:1.31](https://hub.docker.com/r/wikibase/wikibase/)
 
-### Version support
+## Version support
 
 Wikibase operates a continuous development model (alongside Mediawiki), where software changes are pushed live to Wikimedia sites such as Wikidata on a regular basis.
 
@@ -26,6 +26,7 @@ See https://www.mediawiki.org/wiki/Version_lifecycle for more details.
 
 ## Bundle image
 Wikibase-bundle images are built from the base wikibase images and also include the following additional extensions:
+
 - [OAuth](https://www.mediawiki.org/wiki/Extension:OAuth)
 - [Elastica](https://www.mediawiki.org/wiki/Extension:Elastica)
 - [CirrusSearch](https://www.mediawiki.org/wiki/Extension:CirrusSearch)
@@ -35,14 +36,13 @@ Wikibase-bundle images are built from the base wikibase images and also include 
 - [EntitySchema](https://www.mediawiki.org/wiki/Extension:EntitySchema) (from 1.33)
 - [WikibaseCirrusSearch](https://www.mediawiki.org/wiki/Extension:WikibaseCirrusSearch) (from 1.34)
 
-### Upgrading
+## Upgrading
 
 When upgrading between Wikibase versions you will have to run update.php to update your mysql tables.
 
 A blog post documenting the update progress for this image in a docker-compose setup can be found [here](https://addshore.com/2019/01/wikibase-docker-mediawiki-wikibase-update/)
 
-
-### Environment variables
+## Environment variables
 
 Note: MW_ADMIN_NAME and MW_ADMIN_PASS probably shouldn't be here...
 
@@ -58,7 +58,7 @@ Variable          | Default                   | Description
 `MW_ADMIN_PASS`   | "WikibaseDockerAdminPass" | Admin password to use for admin account on first install
 `MW_WG_SECRET_KEY`| "secretkey"               | Used as source of entropy for persistent login/Oauth etc..(since 1.30)
 
-### Filesystem layout
+## Filesystem layout
 
 Directory                         | Description
 --------------------------------- | ------------------------------------------------------------------------------
@@ -73,22 +73,23 @@ File                              | Description
 `/extra-install.sh`               | Extra code that will be run if LocalSettings.php isn't present (since 1.30)
 `/extra-preinstall-runtime.sh`    | Extra code that will be run from the entrypoint every time (since 1.30)
 
-### Running Maintenance Scripts
+## Running Maintenance Scripts
+
 Maintenance scripts from extensions and mediawiki core can be run with `docker exec` using the wikibase/wikibase container as the targeted container
 
 For example to run a maintenance script from WikibaseImport:
 
 ```docker exec <container name / hash> php //var/www/html/extensions/WikibaseImport/maintenance/importEntities.php --entity Q147```
 
-### Development
+## Development
 
 A new image should be created for every major release of MediaWiki and Wikibase.
 These images currently use the [MediaWiki docker hub base image](https://hub.docker.com/_/mediawiki), so that needs to have a new version prior to updates here.
 
- - Create a new release folder, copying the content from a previous release
- - Update the base Dockerfile to fetch the latest mediawiki image
- - Update the bundle Dockerfile to use the new version of the base image
- - Update download-extension.sh to fetch new versions of the extensions
- - Update the CI build by checking the steps in the main README Development section in this repo.
+- Create a new release folder, copying the content from a previous release
+- Update the base Dockerfile to fetch the latest mediawiki image
+- Update the bundle Dockerfile to use the new version of the base image
+- Update download-extension.sh to fetch new versions of the extensions
+- Update the CI build by checking the steps in the main README Development section in this repo.
 
 Releases that are no longer supported per the [Version lifecycle](https://www.mediawiki.org/wiki/Version_lifecycle) can be deleted.

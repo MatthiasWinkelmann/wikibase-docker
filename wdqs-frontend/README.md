@@ -1,18 +1,17 @@
-## wdqs-frontend docker image
+# wdqs-frontend docker image
 
 UI for the wikibase query service, as seen @ [https://query.wikidata.org](https://query.wikidata.org) for Wikidata.
 
 Automated build.
 
-### Tags
+## Tags
 
 Image name                          | Parent image             | WDQS UI Version
 -------------------------------     | ------------------------ | --------------
 `wikibase/wdqs-frontend` : `latest` | [nginx:stable-alpine](https://hub.docker.com/_/nginx/) | master (built)
 `wikibase/wdqs-frontend` : `legacy` | [nginx:stable-alpine](https://hub.docker.com/_/nginx/) | master (not built)
 
-
-### Environment variables
+## Environment variables
 
 Variable          | Default                      | Description
 ------------------|  ----------------------------| ----------
@@ -22,7 +21,7 @@ Variable          | Default                      | Description
 `WDQS_HOST`       | "wdqs-proxy.svc"             | Hostname of the WDQS host (probably READONLY, hence use of the wdqs-proxy service)
 `COPYRIGHT_URL`   | "undefined"                  | URL for the copyright notice
 
-### Development
+## Development
 
 Both images are built directly from master, so new images for releases are not needed (as there are no releases).
 
