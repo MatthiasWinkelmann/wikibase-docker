@@ -46,7 +46,7 @@ services:
       - DB_NAME=my_wiki
       - QS_PUBLIC_SCHEME_HOST_AND_PORT=http://localhost:9191
   mysql:
-    image: mariadb:10.3
+    image: mariadb:10.5
     restart: unless-stopped
     volumes:
       - mediawiki-mysql-data:/var/lib/mysql
